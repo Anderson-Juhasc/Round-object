@@ -1,17 +1,16 @@
 $brand-round: 4px;
 
-@mixin vendor($property, $value...){
-    -webkit-#{$property}:$value;
-       -moz-#{$property}:$value;
-        -ms-#{$property}:$value;
-         -o-#{$property}:$value;
-            #{$property}:$value;
+@mixin vendor($property, $prefix, $value...){
+    @each $item in $prefix {
+        -#{$item}-#{$property}: $value;
+    }
+    #{$property}:$value;
 }
 
-.rounded                { @include vendor(border-radius, $brand-round); }
-.rounded--top           { @include vendor(border-radius, $brand-round $brand-round 0 0); }
-.rounded--top-left      { @include vendor(border-top-left-radius, $brand-round); }
-.rounded--top-right     { @include vendor(border-top-right-radius, $brand-round); }
-.rounded--bottom        { @include vendor(border-radius, 0 0 $brand-round $brand-round); }
-.rounded--bottom-left   { @include vendor(border-bottom-left-radius, $brand-round); }
-.rounded--bottom-right  { @include vendor(border-bottom-right-radius, $brand-round); }
+.rounded                { @include vendor(border-radius, webkit moz, $brand-round); }
+.rounded--top           { @include vendor(border-radius, webkit moz, $brand-round $brand-round 0 0); }
+.rounded--top-left      { @include vendor(border-top-left-radius, webkit moz, $brand-round); }
+.rounded--top-right     { @include vendor(border-top-right-radius, webkit moz, $brand-round); }
+.rounded--bottom        { @include vendor(border-radius, webkit moz, 0 0 $brand-round $brand-round); }
+.rounded--bottom-left   { @include vendor(border-bottom-left-radius, webkit moz, $brand-round); }
+.rounded--bottom-right  { @include vendor(border-bottom-right-radius, webkit moz, $brand-round); }
