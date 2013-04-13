@@ -1,17 +1,47 @@
+// vars
+$rounded-placeholder: false;
 $brand-round: 4px;
 $prefix: webkit moz;
 
-@mixin vendor($property, $prefix, $value...){
+// mixin vendor
+@mixin vendor($property, $prefix, $value...) {
+
     @each $item in $prefix {
         -#{$item}-#{$property}: $value;
     }
     #{$property}:$value;
+
 }
 
-.rounded                { @include vendor(border-radius, $prefix, $brand-round); }
-.rounded--top           { @include vendor(border-radius, $prefix, $brand-round $brand-round 0 0); }
-.rounded--top-left      { @include vendor(border-top-left-radius, $prefix, $brand-round); }
-.rounded--top-right     { @include vendor(border-top-right-radius, $prefix, $brand-round); }
-.rounded--bottom        { @include vendor(border-radius, $prefix, 0 0 $brand-round $brand-round); }
-.rounded--bottom-left   { @include vendor(border-bottom-left-radius, $prefix, $brand-round); }
-.rounded--bottom-right  { @include vendor(border-bottom-right-radius, $prefix, $brand-round); }
+
+@if ($rounded-placeholder == true) {
+
+    %rounded                { @include vendor(border-radius, $prefix, $brand-round); }
+
+    %rounded--top           { @include vendor(border-radius, $prefix, $brand-round $brand-round 0 0); }
+    %rounded--top-left      { @include vendor(border-top-left-radius, $prefix, $brand-round); }
+    %rounded--top-right     { @include vendor(border-top-right-radius, $prefix, $brand-round); }
+
+    %rounded--bottom        { @include vendor(border-radius, $prefix, 0 0 $brand-round $brand-round); }
+    %rounded--bottom-left   { @include vendor(border-bottom-left-radius, $prefix, $brand-round); }
+    %rounded--bottom-right  { @include vendor(border-bottom-right-radius, $prefix, $brand-round); }
+
+    %rounded--left          { @include vendor(border-radius, $prefix, $brand-round 0 0 $brand-round); }
+    %rounded--right         { @include vendor(border-radius, $prefix, 0 $brand-round $brand-round 0); }
+
+} @else {
+
+    .rounded                { @include vendor(border-radius, $prefix, $brand-round); }
+
+    .rounded--top           { @include vendor(border-radius, $prefix, $brand-round $brand-round 0 0); }
+    .rounded--top-left      { @include vendor(border-top-left-radius, $prefix, $brand-round); }
+    .rounded--top-right     { @include vendor(border-top-right-radius, $prefix, $brand-round); }
+
+    .rounded--bottom        { @include vendor(border-radius, $prefix, 0 0 $brand-round $brand-round); }
+    .rounded--bottom-left   { @include vendor(border-bottom-left-radius, $prefix, $brand-round); }
+    .rounded--bottom-right  { @include vendor(border-bottom-right-radius, $prefix, $brand-round); }
+
+    .rounded--left          { @include vendor(border-radius, $prefix, $brand-round 0 0 $brand-round); }
+    .rounded--right         { @include vendor(border-radius, $prefix, 0 $brand-round $brand-round 0); }
+
+}
