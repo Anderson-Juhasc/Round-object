@@ -1,0 +1,44 @@
+// vars
+$round-placeholder: false;
+$brand-round: 4px;
+$prefix: webkit moz;
+
+// mixin vendor
+@mixin vendor($property, $prefix, $value...) {
+
+    @each $item in $prefix {
+        -#{$item}-#{$property}: $value;
+    }
+    #{$property}:$value;
+
+}
+
+@mixin round-init($typeClass) {
+
+    #{$typeClass}round                { @include vendor(border-radius, $prefix, $brand-round); }
+
+    #{$typeClass}round--top           { @include vendor(border-radius, $prefix, $brand-round $brand-round 0 0); }
+    #{$typeClass}round--top-left      { @include vendor(border-top-left-radius, $prefix, $brand-round); }
+    #{$typeClass}round--top-right     { @include vendor(border-top-right-radius, $prefix, $brand-round); }
+
+    #{$typeClass}round--bottom        { @include vendor(border-radius, $prefix, 0 0 $brand-round $brand-round); }
+    #{$typeClass}round--bottom-left   { @include vendor(border-bottom-left-radius, $prefix, $brand-round); }
+    #{$typeClass}round--bottom-right  { @include vendor(border-bottom-right-radius, $prefix, $brand-round); }
+
+    #{$typeClass}round--left          { @include vendor(border-radius, $prefix, $brand-round 0 0 $brand-round); }
+    #{$typeClass}round--right         { @include vendor(border-radius, $prefix, 0 $brand-round $brand-round 0); }
+
+    #{$typeClass}round--circle        { @include vendor(border-radius, $prefix, 50%); }
+
+}
+
+
+@if ($round-placeholder == true) {
+
+    @include round-init('%');
+
+} @else {
+
+    @include round-init('.');
+
+}
