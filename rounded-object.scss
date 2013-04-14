@@ -28,6 +28,8 @@ $prefix: webkit moz;
     #{$typeClass}rounded--left          { @include vendor(border-radius, $prefix, $brand-round 0 0 $brand-round); }
     #{$typeClass}rounded--right         { @include vendor(border-radius, $prefix, 0 $brand-round $brand-round 0); }
 
+    #{$typeClass}rounded--circle        { @include vendor(border-radius, $prefix, 50%); }
+
 }
 
 
