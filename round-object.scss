@@ -1,34 +1,52 @@
 // vars
-$round-placeholder: false;
-$brand-round: 4px;
-$prefix: webkit moz;
+$round-placeholder:   false;
+$round-value:         4px;
+$round-prefix:        webkit moz;
 
-// mixin vendor
+// use
+$round-circle:        true;
+$round-top:           true;
+$round-right:         true;
+$round-bottom:        true;
+$round-left:          true;
+
+// vendor
 @mixin vendor($property, $prefix, $value...) {
 
     @each $item in $prefix {
         -#{$item}-#{$property}: $value;
     }
-    #{$property}:$value;
+    #{$property}: $value;
 
 }
 
 @mixin round-init($typeClass) {
 
-    #{$typeClass}round                { @include vendor(border-radius, $prefix, $brand-round); }
+        #{$typeClass}round                { @include vendor(border-radius, $round-prefix, $round-value); }
 
-    #{$typeClass}round--top           { @include vendor(border-radius, $prefix, $brand-round $brand-round 0 0); }
-    #{$typeClass}round--top-left      { @include vendor(border-top-left-radius, $prefix, $brand-round); }
-    #{$typeClass}round--top-right     { @include vendor(border-top-right-radius, $prefix, $brand-round); }
+    @if ($round-circle == true) {
+        #{$typeClass}round--circle        { @include vendor(border-radius, $round-prefix, 50%); }
+    }
 
-    #{$typeClass}round--bottom        { @include vendor(border-radius, $prefix, 0 0 $brand-round $brand-round); }
-    #{$typeClass}round--bottom-left   { @include vendor(border-bottom-left-radius, $prefix, $brand-round); }
-    #{$typeClass}round--bottom-right  { @include vendor(border-bottom-right-radius, $prefix, $brand-round); }
+    @if ($round-top == true) {
+        #{$typeClass}round--top           { @include vendor(border-radius, $round-prefix, $round-value $round-value 0 0); }
+        #{$typeClass}round--top-left      { @include vendor(border-top-left-radius, $round-prefix, $round-value); }
+        #{$typeClass}round--top-right     { @include vendor(border-top-right-radius, $round-prefix, $round-value); }
+    }
 
-    #{$typeClass}round--left          { @include vendor(border-radius, $prefix, $brand-round 0 0 $brand-round); }
-    #{$typeClass}round--right         { @include vendor(border-radius, $prefix, 0 $brand-round $brand-round 0); }
+    @if ($round-right == true) {
+        #{$typeClass}round--right         { @include vendor(border-radius, $round-prefix, 0 $round-value $round-value 0); }
+    }
 
-    #{$typeClass}round--circle        { @include vendor(border-radius, $prefix, 50%); }
+    @if ($round-left == true) {
+        #{$typeClass}round--left          { @include vendor(border-radius, $round-prefix, $round-value 0 0 $round-value); }
+    }
+
+    @if ($round-bottom == true) {
+        #{$typeClass}round--bottom        { @include vendor(border-radius, $round-prefix, 0 0 $round-value $round-value); }
+        #{$typeClass}round--bottom-left   { @include vendor(border-bottom-left-radius, $round-prefix, $round-value); }
+        #{$typeClass}round--bottom-right  { @include vendor(border-bottom-right-radius, $round-prefix, $round-value); }
+    }
 
 }
 
