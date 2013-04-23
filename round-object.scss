@@ -30,22 +30,22 @@ $round-left:          true;
 
     @if ($round-top == true) {
         #{$typeClass}round--top           { @include vendor(border-radius, $round-prefix, $round-value $round-value 0 0); }
-        #{$typeClass}round--top-left      { @include vendor(border-top-left-radius, $round-prefix, $round-value); }
         #{$typeClass}round--top-right     { @include vendor(border-top-right-radius, $round-prefix, $round-value); }
+        #{$typeClass}round--top-left      { @include vendor(border-top-left-radius, $round-prefix, $round-value); }
     }
 
     @if ($round-right == true) {
         #{$typeClass}round--right         { @include vendor(border-radius, $round-prefix, 0 $round-value $round-value 0); }
     }
 
-    @if ($round-left == true) {
-        #{$typeClass}round--left          { @include vendor(border-radius, $round-prefix, $round-value 0 0 $round-value); }
-    }
-
     @if ($round-bottom == true) {
         #{$typeClass}round--bottom        { @include vendor(border-radius, $round-prefix, 0 0 $round-value $round-value); }
-        #{$typeClass}round--bottom-left   { @include vendor(border-bottom-left-radius, $round-prefix, $round-value); }
         #{$typeClass}round--bottom-right  { @include vendor(border-bottom-right-radius, $round-prefix, $round-value); }
+        #{$typeClass}round--bottom-left   { @include vendor(border-bottom-left-radius, $round-prefix, $round-value); }
+    }
+
+    @if ($round-left == true) {
+        #{$typeClass}round--left          { @include vendor(border-radius, $round-prefix, $round-value 0 0 $round-value); }
     }
 
 }
