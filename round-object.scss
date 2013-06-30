@@ -1,15 +1,19 @@
-// Variables
-// -------------------------------------------
+/*------------------------------------*\
+    $ROUND
+\*------------------------------------*/
 
+/**
+ * Variables
+ * --------------------------------------------------
+ */
 $round-placeholder:   false;       // Do you want to use placeholders?
 $round-value:         4px;         // Define your radius value
 $round-prefix:        webkit moz;  // Define your vendors
 
-
-
-// Which objects would you like to use?
-// -------------------------------------------
-
+/**
+ * Which objects would you like to use?
+ * --------------------------------------------------
+ */
 $round-circle:        true;
 $round-top:           true;
 $round-right:         true;
@@ -18,10 +22,10 @@ $round-left:          true;
 
 
 
-// Mixins
-// -------------------------------------------
-
-// Vendor-prefixed CSS
+/**
+ * Create @mixin Vendor-prefixed CSS
+ * --------------------------------------------------
+ */
 @mixin vendor($property, $prefix, $value...) {
 
     @each $item in $prefix {
@@ -31,7 +35,11 @@ $round-left:          true;
 
 }
 
-// Border Radius
+
+/**
+ * Create @mixin for init Border Radius object
+ * --------------------------------------------------
+ */
 @mixin round-init($typeClass) {
 
         #{$typeClass}round                { @include vendor(border-radius, $round-prefix, $round-value); }
@@ -62,13 +70,14 @@ $round-left:          true;
 
 }
 
+
 /**
  *
  * Create a Border Radius object
  * --------------------------------------------------
  *
  * How to use:
- *
+ */
    @if ($round-placeholder == true) {
 
        @include round-init('%'); // Using placeholder
@@ -78,12 +87,14 @@ $round-left:          true;
        @include round-init('.'); // Using class
 
    }
+
+
+/**
  *
- *
- * Description:
+ * Description
+ * --------------------------------------------------
  *
  * Where `$round-placeholder` is a boolean value
  * TRUE  : will use a placeholder for the object created
  * FALSE : will use a class for the object created
- *
  */
