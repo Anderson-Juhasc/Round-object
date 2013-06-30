@@ -1,16 +1,27 @@
-// vars
-$round-placeholder:   false;
-$round-value:         4px;
-$round-prefix:        webkit moz;
+// Variables
+// -------------------------------------------
 
-// use
+$round-placeholder:   false;       // Do you want to use placeholders?
+$round-value:         4px;         // Define your radius value
+$round-prefix:        webkit moz;  // Define your vendors
+
+
+
+// Which objects would you like to use?
+// -------------------------------------------
+
 $round-circle:        true;
 $round-top:           true;
 $round-right:         true;
 $round-bottom:        true;
 $round-left:          true;
 
-// vendor
+
+
+// Mixins
+// -------------------------------------------
+
+// Vendor-prefixed CSS
 @mixin vendor($property, $prefix, $value...) {
 
     @each $item in $prefix {
@@ -20,6 +31,7 @@ $round-left:          true;
 
 }
 
+// Border Radius
 @mixin round-init($typeClass) {
 
         #{$typeClass}round                { @include vendor(border-radius, $round-prefix, $round-value); }
@@ -50,13 +62,28 @@ $round-left:          true;
 
 }
 
+/**
+ *
+ * Create a Border Radius object
+ * --------------------------------------------------
+ *
+ * How to use:
+ *
+   @if ($round-placeholder == true) {
 
-@if ($round-placeholder == true) {
+       @include round-init('%'); // Using placeholder
 
-    @include round-init('%');
+   } @else {
 
-} @else {
+       @include round-init('.'); // Using class
 
-    @include round-init('.');
-
-}
+   }
+ *
+ *
+ * Description:
+ *
+ * Where `$round-placeholder` is a boolean value
+ * TRUE  : will use a placeholder for the object created
+ * FALSE : will use a class for the object created
+ *
+ */
