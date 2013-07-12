@@ -44,6 +44,8 @@ $round-left:          true;
 
         #{$typeClass}round                { @include vendor(border-radius, $round-prefix, $round-value); }
 
+        #{$typeClass}round--flush         { @include vendor(border-radius, $round-prefix, 0 !important); }
+
     @if ($round-circle == true) {
         #{$typeClass}round--circle        { @include vendor(border-radius, $round-prefix, 50%); }
     }
